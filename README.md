@@ -29,6 +29,7 @@ The ranges are all stored in a JSON file for easy parsing. Depending on what you
 As it stands, there are *4,294,967,296* IPv4 addresses. After excluding reserved, private, & governement ranges, you can drop that number almost in half, thus speeding up your scan times.
 
 ## Todo
+- Do we need parsers for Office/Google from their provided JSON or do all those ranges fall under a single ASN?
 - distributed masscan using the masscan python library
 - masscan exclude.conf output format *(with comments describing the ranges)*
 - possibly find a database that contains all the prefixes behind an ASN *(bgpview heavily throttles and can only handle 1 ASN at a time)* *(for now a bad.json is generated to list empty ASN's)*
