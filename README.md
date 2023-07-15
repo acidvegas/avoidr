@@ -26,7 +26,14 @@ Below is a list of queries we look for:
 
 The ranges are all stored in a JSON file for easy parsing. Depending on what you are scanning for, this list can be altered to better suit your needs.
 
-As it stands, there are *4,294,967,296* IPv4 addresses. After excluding reserved, private, & governement ranges, you can drop that number almost in half, thus speeding up your scan times.
+As it stands, there are *4,294,967,296* IPv4 addresses. After excluding reserved, private, & governement ranges, you can drop that number drastically, thus speeding up your scan times.
+
+```
+Total IPv4 Addresses   : 4,294,967,296
+Total IPv4 After Clean : 3,343,567,221
+Total IPv6 Addresses   : 340,282,366,920,938,463,463,374,607,431,768,211,456
+Total IPv6 After Clean : 336,289,486,288,049,758,211,573,978,091,720,015,870
+```
 
 ## Todo
 - Do we need parsers for Office/Google from their provided JSON or do all those ranges fall under a single ASN?
