@@ -13,13 +13,15 @@ grand_total = {'4': 0, '6': 0}
 results     = dict()
 
 def calculate_hash(path):
+	''' Calculate the SHA1 hash of a file. '''
 	hash_sha1 = hashlib.sha1()
 	with open(path, 'rb') as f:
 		for chunk in iter(lambda: f.read(4096), b''):
 			hash_sha1.update(chunk)
 	return hash_sha1.hexdigest()
 
-def get_url(url, git=False):
+def get_url(url, git=False) -> str:
+	''' Get the contents of a URL. '''
 	data = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'}
 	if git:
 		data['Accept'] = 'application/vnd.github.v3+json'
@@ -27,6 +29,7 @@ def get_url(url, git=False):
 	return urllib.request.urlopen(req, timeout=10).read().decode()
 
 def update_database():
+	''' Update the ASN database.  '''
 	DB = 'databases/fullASN.json.zip'
 	try:
 		os.mkdir('databases')
@@ -52,6 +55,7 @@ def update_database():
 			zObject.extract(DB[10:-4], 'databases')
 
 def process_asn(data):
+	''' Process an ASN. '''
 	if data['asn'] not in results:
 		title = data['descr'] if 'org' not in data else data['descr'] + ' / ' + data['org']
 		results[data['asn']] = {'name': title, 'ranges': dict()}
