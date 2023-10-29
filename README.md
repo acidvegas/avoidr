@@ -19,10 +19,11 @@ Total IPv6 Addresses   : 340,282,366,920,938,463,463,374,607,431,768,211,456
 Total IPv6 After Clean : 336,289,486,288,049,758,211,573,978,091,720,015,870
 ```
 
+After running, the ranges will be put in `exclusions.conf` to be used with the `--excludefile` masscan flag.
+
 ## Todo
 - Do we need parsers for Office/Google from their provided JSON or do all those ranges fall under a single ASN?
 - distributed masscan using the masscan python library
-- masscan exclude.conf output format *(with comments describing the ranges)*
 - possibly find a database that contains all the prefixes behind an ASN *(bgpview heavily throttles and can only handle 1 ASN at a time)* *(for now a bad.json is generated to list empty ASN's)*
 - Seperate queries by sectors *(Government, social media, financial institutons, schools, etc)*
 
