@@ -1,30 +1,30 @@
 # avoidr
-> masscan with exclusive exclusions
+
+Avoidr is a Python-based utility designed to enhance the functionality of scanning tools like masscan by providing a means to generate exclusive exclusions of IP addresses. It operates by searching through an ASN *(Autonomous System Number)* database for user-defined strings, identifying all IP ranges associated with the ASNs that match the search criteria.
+
+This targeted approach is particularly useful for users seeking to avoid scanning IP ranges belonging to government entities or other sensitive domains. The project streamlines the process of filtering out specific IP ranges, thereby facilitating safer and more responsible scanning activities.
+
+## Usage
+
+To use Avoidr, simply run the script with the desired arguments:
+| Argument          | Description                                          |
+| ----------------- | ---------------------------------------------------- |
+| `-4`, `--ipv4`    | Process IPv4 addresses only                          |
+| `-6`, `--ipv6`    | Process IPv6 addresses only                          |
+| `-x`, `--exclude` | Create exclusions for masscan instead of JSON output |
+| `-s`, `--search`  | Comma-separated strings to search *(no output file)* |
+| `-u`, `--update`  | Update the ASN database                              |
+
+The script can generate a JSON file with the results or a .conf file with the exclusions ready to be used by masscan.
+
+## Custom Queries
+The `custom.txt` file serves as a configuration input for Avoidr, containing a list of keywords corresponding to organizations whose IP ranges users wish to exclude from network scanning activities. When Avoidr processes this file, it searches the ASN database for these keywords, retrieves the related IP ranges, and generates a list of exclusions to prevent scanning tools like masscan from interacting with potentially sensitive or restricted network spaces.
+
+The predefined list in the `custom.txt` file will yeild roughly **358,402,432​​** IPv4 addresses, which is almost **10%** of the total IPv4 address space.
+
+## Preview
 
 ![](.screens/preview.png)
-
-## Information
-This is still a work in progress.
-
-This is just a little side project I am working on that will search keywords in a database of **Autonomous System Numbers** *(ASN)*. The ASN is then turned into a list of its respective IP ranges that fall under it.
-
-The ranges are all stored in a JSON file for easy parsing. Depending on what you are scanning for, this list can be altered to better suit your needs.
-
-As it stands, there are *4,294,967,296* IPv4 addresses. After excluding reserved, private, & governement ranges, you can drop that number drastically, thus speeding up your scan times.
-
-```
-Total IPv4 Addresses   : 4,294,967,296
-Total IPv4 After Clean : 3,343,567,221
-Total IPv6 Addresses   : 340,282,366,920,938,463,463,374,607,431,768,211,456
-Total IPv6 After Clean : 336,289,486,288,049,758,211,573,978,091,720,015,870
-```
-
-## Todo
-- Do we need parsers for Office/Google from their provided JSON or do all those ranges fall under a single ASN?
-- distributed masscan using the masscan python library
-- masscan exclude.conf output format *(with comments describing the ranges)*
-- possibly find a database that contains all the prefixes behind an ASN *(bgpview heavily throttles and can only handle 1 ASN at a time)* *(for now a bad.json is generated to list empty ASN's)*
-- Seperate queries by sectors *(Government, social media, financial institutons, schools, etc)*
 
 ___
 
